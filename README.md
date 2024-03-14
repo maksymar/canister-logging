@@ -6,8 +6,8 @@ $ dfx deploy
 
 $ dfx canister call logging_canister greet Alice
 $ dfx canister call logging_canister greet Bob
+$ dfx canister call logging_canister explicit_trap oops!
 $ dfx canister call logging_canister explicit_trap ''
-$ dfx canister call logging_canister explicit_trap 'it’s a trap!'
 $ dfx canister call logging_canister explicit_panic
 $ dfx canister call logging_canister failed_unwrap
 $ dfx canister call logging_canister memory_oob

@@ -25,9 +25,3 @@ fn memory_oob() {
     let mut buffer = vec![0u8; 10];
     ic_cdk::api::stable::stable_read(20, &mut buffer);
 }
-
-// #[ic_cdk::heartbeat]
-// async fn heartbeat() {
-//     //ic_cdk::trap("heartbeat trap");
-//     String::from_utf8(vec![0xc0, 0xff, 0xee]).unwrap();
-// }
