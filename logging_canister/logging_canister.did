@@ -1,0 +1,7 @@
+service : {
+    "greet" : (text) -> (text);
+    "explicit_trap" : (text) -> ();
+    "explicit_panic" : () -> ();
+    "failed_unwrap" : () -> ();
+    "memory_oob" : () -> ();
+};

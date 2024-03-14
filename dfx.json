@@ -1,0 +1,17 @@
+{
+  "canisters": {
+    "logging_canister": {
+      "candid": "logging_canister/logging_canister.did",
+      "package": "logging_canister",
+      "type": "rust"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
