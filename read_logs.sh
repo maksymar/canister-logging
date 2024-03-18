@@ -22,5 +22,5 @@ fetch_and_filter_logs
 # Infinite loop to continuously fetch and filter logs
 while true; do
     fetch_and_filter_logs
-    sleep 1  # Adjust sleep time as needed to avoid overloading the system
+    sleep 1
 done
