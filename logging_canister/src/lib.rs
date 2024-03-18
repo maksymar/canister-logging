@@ -1,11 +1,23 @@
-// use std::panic;
+#[ic_cdk::init]
+fn init() {
+    std::panic::set_hook(Box::new(|info| {
+        let file = info.location().unwrap().file();
+        let line = info.location().unwrap().line();
+        let col = info.location().unwrap().column();
 
-// #[ic_cdk::init]
-// fn init() {
-//     panic::set_hook(Box::new(|_| {
-//         // Do nothing to avoid duplicated panic messages.
-//     }));
-// }
+        let msg = match info.payload().downcast_ref::<&'static str>() {
+            Some(s) => *s,
+            None => match info.payload().downcast_ref::<String>() {
+                Some(s) => &s[..],
+                None => "Box<Any>",
+            },
+        };
+
+        let err_info = format!("Panicked at '{}', {}:{}:{}", msg, file, line, col);
+        //ic_cdk::print(&err_info);  // Skip printing to avoid duplicated messages.
+        ic_cdk::trap(&err_info);
+    }));
+}
 
 #[ic_cdk::update]
 fn greet(name: String) -> String {
