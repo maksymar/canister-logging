@@ -21,13 +21,13 @@ Logs example
 
 ```shell
 $ dfx canister logs logging_canister
-[0. 2024-03-14T11:40:41.67773931Z]: Hello, Alice!
-[1. 2024-03-14T11:40:46.461205193Z]: Hello, Bob!
-[2. 2024-03-14T11:40:51.392137436Z]: Canister explicitly called trap without a message
-[3. 2024-03-14T11:40:56.909091065Z]: Canister explicitly called trap: it’s a trap!
-[4. 2024-03-14T11:41:01.124157144Z]: Panicked at 'panic attack', logging_canister/src/lib.rs:15:5
-[5. 2024-03-14T11:41:01.124157144Z]: Canister explicitly called trap: Panicked at 'panic attack', logging_canister/src/lib.rs:15:5
-[6. 2024-03-14T11:41:06.304553595Z]: Panicked at 'called `Result::unwrap()` on an `Err` value: FromUtf8Error { bytes: [192, 255, 238], error: Utf8Error { valid_up_to: 0, error_len: Some(1) } }', logging_canister/src/lib.rs:20:47
-[7. 2024-03-14T11:41:06.304553595Z]: Canister explicitly called trap: Panicked at 'called `Result::unwrap()` on an `Err` value: FromUtf8Error { bytes: [192, 255, 238], error: Utf8Error { valid_up_to: 0, error_len: Some(1) } }', logging_canister/src/lib.rs:20:47
-[8. 2024-03-14T11:41:11.89746486Z]: Canister trapped: stable memory out of bounds
+[0. 2024-03-18T13:47:50.532537542Z]: Hello, Alice!
+[1. 2024-03-18T13:48:01.595812726Z]: Hello, Bob!
+[2. 2024-03-18T13:48:08.310495273Z]: Canister explicitly called trap: oops!
+[3. 2024-03-18T13:48:13.174937314Z]: Canister explicitly called trap without a message
+[4. 2024-03-18T13:48:18.795510205Z]: Panicked at 'panic attack', logging_canister/src/lib.rs:15:5
+[5. 2024-03-18T13:48:18.795510205Z]: Canister explicitly called trap: Panicked at 'panic attack', logging_canister/src/lib.rs:15:5
+[6. 2024-03-18T13:48:23.301561192Z]: Panicked at 'called `Result::unwrap()` on an `Err` value: FromUtf8Error { bytes: [192, 255, 238], error: Utf8Error { valid_up_to: 0, error_len: Some(1) } }', logging_canister/src/lib.rs:26:47
+[7. 2024-03-18T13:48:23.301561192Z]: Canister explicitly called trap: Panicked at 'called `Result::unwrap()` on an `Err` value: FromUtf8Error { bytes: [192, 255, 238], error: Utf8Error { valid_up_to: 0, error_len: Some(1) } }', logging_canister/src/lib.rs:26:47
+[8. 2024-03-18T13:48:27.648673456Z]: Canister trapped: stable memory out of bounds
 ```
