@@ -1,5 +1,4 @@
-#[ic_cdk::init]
-fn init() {
+fn set_hook() {
     std::panic::set_hook(Box::new(|info| {
         let file = info.location().unwrap().file();
         let line = info.location().unwrap().line();
@@ -17,6 +16,11 @@ fn init() {
         //ic_cdk::print(&err_info);  // Skip printing to avoid duplicated messages.
         ic_cdk::trap(&err_info);
     }));
+}
+
+#[ic_cdk::init]
+fn init() {
+    set_hook();
 }
 
 #[ic_cdk::update]
@@ -53,6 +57,9 @@ fn failed_unwrap() {
 
 // #[ic_cdk::heartbeat]
 // fn heartbeat() {
-//     ic_cdk::print("Message before heartbeat trap is preserved");
-//     ic_cdk::trap("Heartbeat trap");
+//     set_hook();
+//     // ic_cdk::print("Message before heartbeat trap is preserved");
+//     // ic_cdk::trap("Heartbeat trap");
+//     ic_cdk::print("Message before heartbeat panic is preserved");
+//     panic!("Heartbeat panic");
 // }

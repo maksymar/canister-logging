@@ -78,8 +78,7 @@ dfx 0.18.0+rev28.dirty-b0405bac
 
 # Tmux shortcuts
 # Create new window: Ctrl+B+c
-# Split pane vertically (next to each other): Ctrl+B+%
-# Navigate between panes: Ctrl+B+(arrows)
 # Split pane horisontally (one below another): Ctrl+B+"
+# Navigate between panes: Ctrl+B+(arrows)
 $ cd demo/canister-logging
 ```
