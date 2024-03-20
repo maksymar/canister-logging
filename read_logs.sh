@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Define a function to execute dfx
+dfx() {
+    ./../sdk/target/debug/dfx "$@"
+}
+
 # Function to fetch logs and filter out new lines
 fetch_and_filter_logs() {
     # Fetch logs
