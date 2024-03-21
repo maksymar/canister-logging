@@ -18,8 +18,8 @@ fn setup() {
         ic_cdk::trap(&err_info);
     }));
 
-    // Set timer.
-    set_timer();
+    // Setup timer.
+    setup_timer();
 }
 
 #[ic_cdk::init]
@@ -63,15 +63,15 @@ fn failed_unwrap() {
     String::from_utf8(vec![0xc0, 0xff, 0xee]).unwrap();
 }
 
-fn set_timer() {
-    // ic_cdk_timers::set_timer_interval(std::time::Duration::from_secs(3), || {
-    //     ic_cdk::print("right before timer trap");
-    //     ic_cdk::trap("timer trap");
-    // });
+fn setup_timer() {
+    ic_cdk_timers::set_timer_interval(std::time::Duration::from_secs(3), || {
+        // ic_cdk::print("right before timer trap");
+        // ic_cdk::trap("timer trap");
+    });
 }
 
-// #[ic_cdk::heartbeat]
-// fn heartbeat() {
-//     ic_cdk::print("right before heartbeat panic");
-//     panic!("heartbeat panic");
-// }
+#[ic_cdk::heartbeat]
+fn heartbeat() {
+    // ic_cdk::print("right before heartbeat panic");
+    // panic!("heartbeat panic");
+}
