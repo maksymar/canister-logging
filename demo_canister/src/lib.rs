@@ -32,6 +32,8 @@ fn post_upgrade() {
     setup();
 }
 
+//=============================================================================
+
 #[ic_cdk::update]
 fn print(text: String) {
     ic_cdk::print(text);
