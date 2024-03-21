@@ -13,6 +13,7 @@ $ dfx deploy
 $ dfx canister call demo_canister print aaa
 $ dfx canister call demo_canister print bbb
 $ dfx canister call demo_canister trap oops!
+$ dfx canister call demo_canister trap ''
 $ dfx canister call demo_canister panic aaa!
 $ dfx canister call demo_canister failed_unwrap
 $ dfx canister call demo_canister memory_oob
@@ -27,21 +28,27 @@ $ ./stream_logs.sh
 Logs example
 
 ```shell
-[0. 2024-03-20T12:17:32.44713786Z]: Hello, Alice!
-[1. 2024-03-20T12:17:49.066851935Z]: Hello, Bob!
-[2. 2024-03-20T12:18:05.890427183Z]: Message before trap is preserved
-[3. 2024-03-20T12:18:05.890427183Z]: Canister explicitly called trap: oops!
-[4. 2024-03-20T12:18:23.067717178Z]: Message before trap is preserved
-[5. 2024-03-20T12:18:23.067717178Z]: Canister explicitly called trap without a message
-[6. 2024-03-20T12:18:40.661320818Z]: Message before panic is preserved
-[7. 2024-03-20T12:18:40.661320818Z]: Canister explicitly called trap: Panicked at 'panic attack', demo_canister/src/lib.rs:38:5
-[8. 2024-03-20T12:24:56.277509746Z]: Hello, ccc!
-[9. 2024-03-20T12:25:12.105787237Z]: Message before panic is preserved
-[10. 2024-03-20T12:25:12.105787237Z]: Canister explicitly called trap: Panicked at 'panic attack', demo_canister/src/lib.rs:38:5
-[11. 2024-03-20T12:25:20.932478166Z]: Message before failed unwrap is preserved
-[12. 2024-03-20T12:25:20.932478166Z]: Canister explicitly called trap: Panicked at 'called `Result::unwrap()` on an `Err` value: FromUtf8Error { bytes: [192, 255, 238], error: Utf8Error { valid_up_to: 0, error_len: Some(1) } }', demo_canister/src/lib.rs:51:47
-[13. 2024-03-20T12:25:31.096857436Z]: Message before memory oob is preserved
-[14. 2024-03-20T12:25:31.096857436Z]: Canister trapped: stable memory out of bounds
+[76. 2024-03-21T12:33:01.965292743Z]: right before timer trap
+[77. 2024-03-21T12:33:01.965292743Z]: Canister explicitly called trap: timer trap
+[78. 2024-03-21T12:33:05.450071111Z]: right before timer trap
+[79. 2024-03-21T12:33:05.450071111Z]: Canister explicitly called trap: timer trap
+...
+[104. 2024-03-21T12:33:45.176316425Z]: right before heartbeat panic
+[105. 2024-03-21T12:33:45.176316425Z]: Canister explicitly called trap: Panicked at 'heartbeat panic', demo_canister/src/lib.rs:72:5
+[106. 2024-03-21T12:33:46.268548377Z]: right before heartbeat panic
+[107. 2024-03-21T12:33:46.268548377Z]: Canister explicitly called trap: Panicked at 'heartbeat panic', demo_canister/src/lib.rs:72:5
+[108. 2024-03-21T12:34:08.596444882Z]: aaa
+[109. 2024-03-21T12:34:13.608001044Z]: bbb
+[110. 2024-03-21T12:34:18.200893597Z]: right before trap
+[111. 2024-03-21T12:34:18.200893597Z]: Canister explicitly called trap: oops!
+[112. 2024-03-21T12:34:30.862245326Z]: right before trap
+[113. 2024-03-21T12:34:30.862245326Z]: Canister explicitly called trap without a message
+[114. 2024-03-21T12:34:35.234216006Z]: right before panic
+[115. 2024-03-21T12:34:35.234216006Z]: Canister explicitly called trap: Panicked at 'aaa!', demo_canister/src/lib.rs:52:5
+[116. 2024-03-21T12:34:40.529936619Z]: right before failed unwrap
+[117. 2024-03-21T12:34:40.529936619Z]: Canister explicitly called trap: Panicked at 'called `Result::unwrap()` on an `Err` value: FromUtf8Error { bytes: [192, 255, 238], error: Utf8Error { valid_up_to: 0, error_len: Some(1) } }', demo_canister/src/lib.rs:66:47
+[118. 2024-03-21T12:34:46.356277571Z]: right before memory out of bounds
+[119. 2024-03-21T12:34:46.356277571Z]: Canister trapped: stable memory out of bounds
 ```
 
 ## Preparation
