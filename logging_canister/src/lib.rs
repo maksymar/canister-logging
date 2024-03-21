@@ -24,42 +24,41 @@ fn init() {
 }
 
 #[ic_cdk::update]
-fn greet(name: String) -> String {
-    let message = format!("Hello, {}!", name);
-    ic_cdk::print(message.clone());
-    message
+fn print(text: String) {
+    ic_cdk::print(text);
 }
 
 #[ic_cdk::update]
-fn explicit_trap(message: String) {
-    ic_cdk::print("Message before trap is preserved");
+fn trap(message: String) {
+    ic_cdk::print("Message before trap");
     ic_cdk::trap(&message);
 }
 
 #[ic_cdk::update]
-fn explicit_panic() {
-    ic_cdk::print("Message before panic is preserved");
+fn panic() {
+    ic_cdk::print("Message before panic");
     panic!("panic attack");
 }
 
 #[ic_cdk::update]
 fn memory_oob() {
-    ic_cdk::print("Message before memory oob is preserved");
-    let mut buffer = vec![0u8; 10];
-    ic_cdk::api::stable::stable_read(20, &mut buffer);
+    ic_cdk::print("Message before memory out of bounds");
+    const BUFFER_SIZE: u32 = 10;
+    let mut buffer = vec![0u8; BUFFER_SIZE as usize];
+    ic_cdk::api::stable::stable_read(BUFFER_SIZE + 1, &mut buffer);
 }
 
 #[ic_cdk::update]
 fn failed_unwrap() {
-    ic_cdk::print("Message before failed unwrap is preserved");
+    ic_cdk::print("Message before failed unwrap");
     String::from_utf8(vec![0xc0, 0xff, 0xee]).unwrap();
 }
 
 // #[ic_cdk::heartbeat]
 // fn heartbeat() {
 //     set_hook();
-//     // ic_cdk::print("Message before heartbeat trap is preserved");
+//     // ic_cdk::print("Message before heartbeat trap");
 //     // ic_cdk::trap("Heartbeat trap");
-//     ic_cdk::print("Message before heartbeat panic is preserved");
+//     ic_cdk::print("Message before heartbeat panic");
 //     panic!("Heartbeat panic");
 // }

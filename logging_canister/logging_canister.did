@@ -1,7 +1,7 @@
 service : {
-    "greet" : (text) -> (text);
-    "explicit_trap" : (text) -> ();
-    "explicit_panic" : () -> ();
+    "print" : (text) -> ();
+    "trap" : (text) -> ();
+    "panic" : () -> ();
     "memory_oob" : () -> ();
     "failed_unwrap" : () -> ();
 };
