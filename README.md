@@ -13,8 +13,7 @@ $ dfx deploy
 $ dfx canister call demo_canister print aaa
 $ dfx canister call demo_canister print bbb
 $ dfx canister call demo_canister trap oops!
-$ dfx canister call demo_canister trap ''
-$ dfx canister call demo_canister panic
+$ dfx canister call demo_canister panic aaa!
 $ dfx canister call demo_canister failed_unwrap
 $ dfx canister call demo_canister memory_oob
 

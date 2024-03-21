@@ -23,6 +23,11 @@ fn init() {
     set_hook();
 }
 
+#[ic_cdk::post_upgrade]
+fn post_upgrade() {
+    set_hook();
+}
+
 #[ic_cdk::update]
 fn print(text: String) {
     ic_cdk::print(text);
@@ -35,9 +40,9 @@ fn trap(message: String) {
 }
 
 #[ic_cdk::update]
-fn panic() {
+fn panic(message: String) {
     ic_cdk::print("Message before panic");
-    panic!("panic attack");
+    panic!("{}", message);
 }
 
 #[ic_cdk::update]
@@ -56,7 +61,6 @@ fn failed_unwrap() {
 
 // #[ic_cdk::heartbeat]
 // fn heartbeat() {
-//     set_hook();
 //     // ic_cdk::print("Message before heartbeat trap");
 //     // ic_cdk::trap("Heartbeat trap");
 //     ic_cdk::print("Message before heartbeat panic");
