@@ -10,19 +10,19 @@ $ dfx stop
 $ unalias dfx; alias dfx='./../sdk/target/debug/dfx'
 $ dfx deploy
 
-$ dfx canister call logging_canister greet Alice
-$ dfx canister call logging_canister greet Bob
-$ dfx canister call logging_canister explicit_trap oops!
-$ dfx canister call logging_canister explicit_trap ''
-$ dfx canister call logging_canister explicit_panic
-$ dfx canister call logging_canister failed_unwrap
-$ dfx canister call logging_canister memory_oob
+$ dfx canister call demo_canister print aaa
+$ dfx canister call demo_canister print bbb
+$ dfx canister call demo_canister trap oops!
+$ dfx canister call demo_canister trap ''
+$ dfx canister call demo_canister panic
+$ dfx canister call demo_canister failed_unwrap
+$ dfx canister call demo_canister memory_oob
 
-$ dfx canister logs logging_canister
+$ dfx canister logs demo_canister
 
 # Pane B2.
 $ unalias dfx; alias dfx='./../sdk/target/debug/dfx'
-$ ./read_logs.sh
+$ ./stream_logs.sh
 ```
 
 Logs example
@@ -35,12 +35,12 @@ Logs example
 [4. 2024-03-20T12:18:23.067717178Z]: Message before trap is preserved
 [5. 2024-03-20T12:18:23.067717178Z]: Canister explicitly called trap without a message
 [6. 2024-03-20T12:18:40.661320818Z]: Message before panic is preserved
-[7. 2024-03-20T12:18:40.661320818Z]: Canister explicitly called trap: Panicked at 'panic attack', logging_canister/src/lib.rs:38:5
+[7. 2024-03-20T12:18:40.661320818Z]: Canister explicitly called trap: Panicked at 'panic attack', demo_canister/src/lib.rs:38:5
 [8. 2024-03-20T12:24:56.277509746Z]: Hello, ccc!
 [9. 2024-03-20T12:25:12.105787237Z]: Message before panic is preserved
-[10. 2024-03-20T12:25:12.105787237Z]: Canister explicitly called trap: Panicked at 'panic attack', logging_canister/src/lib.rs:38:5
+[10. 2024-03-20T12:25:12.105787237Z]: Canister explicitly called trap: Panicked at 'panic attack', demo_canister/src/lib.rs:38:5
 [11. 2024-03-20T12:25:20.932478166Z]: Message before failed unwrap is preserved
-[12. 2024-03-20T12:25:20.932478166Z]: Canister explicitly called trap: Panicked at 'called `Result::unwrap()` on an `Err` value: FromUtf8Error { bytes: [192, 255, 238], error: Utf8Error { valid_up_to: 0, error_len: Some(1) } }', logging_canister/src/lib.rs:51:47
+[12. 2024-03-20T12:25:20.932478166Z]: Canister explicitly called trap: Panicked at 'called `Result::unwrap()` on an `Err` value: FromUtf8Error { bytes: [192, 255, 238], error: Utf8Error { valid_up_to: 0, error_len: Some(1) } }', demo_canister/src/lib.rs:51:47
 [13. 2024-03-20T12:25:31.096857436Z]: Message before memory oob is preserved
 [14. 2024-03-20T12:25:31.096857436Z]: Canister trapped: stable memory out of bounds
 ```
