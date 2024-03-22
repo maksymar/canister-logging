@@ -1,8 +1,8 @@
 {
   "canisters": {
-    "demo_canister": {
-      "candid": "demo_canister/demo_canister.did",
-      "package": "demo_canister",
+    "demo": {
+      "candid": "demo/demo.did",
+      "package": "demo",
       "type": "rust"
     }
   },

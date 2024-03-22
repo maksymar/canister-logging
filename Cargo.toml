@@ -1,3 +1,3 @@
 [workspace]
-members = ["demo_canister"]
+members = ["demo"]
 resolver = "2"

@@ -1,4 +1,4 @@
-# canister-logging
+# canister-logs
 
 ```shell
 # Window A.
@@ -10,15 +10,15 @@ $ dfx stop
 $ unalias dfx; alias dfx='./../sdk/target/debug/dfx'
 $ dfx deploy
 
-$ dfx canister call demo_canister print aaa
-$ dfx canister call demo_canister print bbb
-$ dfx canister call demo_canister trap oops!
-$ dfx canister call demo_canister trap ''
-$ dfx canister call demo_canister panic aaa!
-$ dfx canister call demo_canister failed_unwrap
-$ dfx canister call demo_canister memory_oob
+$ dfx canister call demo print aaa
+$ dfx canister call demo print bbb
+$ dfx canister call demo trap oops!
+$ dfx canister call demo trap ''
+$ dfx canister call demo panic aaa!
+$ dfx canister call demo failed_unwrap
+$ dfx canister call demo memory_oob
 
-$ dfx canister logs demo_canister
+$ dfx canister logs demo
 
 # Pane B2.
 $ unalias dfx; alias dfx='./../sdk/target/debug/dfx'
@@ -34,9 +34,9 @@ Logs example
 [79. 2024-03-21T12:33:05.450071111Z]: Canister explicitly called trap: timer trap
 ...
 [104. 2024-03-21T12:33:45.176316425Z]: right before heartbeat panic
-[105. 2024-03-21T12:33:45.176316425Z]: Canister explicitly called trap: Panicked at 'heartbeat panic', demo_canister/src/lib.rs:72:5
+[105. 2024-03-21T12:33:45.176316425Z]: Canister explicitly called trap: Panicked at 'heartbeat panic', demo/src/lib.rs:72:5
 [106. 2024-03-21T12:33:46.268548377Z]: right before heartbeat panic
-[107. 2024-03-21T12:33:46.268548377Z]: Canister explicitly called trap: Panicked at 'heartbeat panic', demo_canister/src/lib.rs:72:5
+[107. 2024-03-21T12:33:46.268548377Z]: Canister explicitly called trap: Panicked at 'heartbeat panic', demo/src/lib.rs:72:5
 [108. 2024-03-21T12:34:08.596444882Z]: aaa
 [109. 2024-03-21T12:34:13.608001044Z]: bbb
 [110. 2024-03-21T12:34:18.200893597Z]: right before trap
@@ -44,9 +44,9 @@ Logs example
 [112. 2024-03-21T12:34:30.862245326Z]: right before trap
 [113. 2024-03-21T12:34:30.862245326Z]: Canister explicitly called trap without a message
 [114. 2024-03-21T12:34:35.234216006Z]: right before panic
-[115. 2024-03-21T12:34:35.234216006Z]: Canister explicitly called trap: Panicked at 'aaa!', demo_canister/src/lib.rs:52:5
+[115. 2024-03-21T12:34:35.234216006Z]: Canister explicitly called trap: Panicked at 'aaa!', demo/src/lib.rs:52:5
 [116. 2024-03-21T12:34:40.529936619Z]: right before failed unwrap
-[117. 2024-03-21T12:34:40.529936619Z]: Canister explicitly called trap: Panicked at 'called `Result::unwrap()` on an `Err` value: FromUtf8Error { bytes: [192, 255, 238], error: Utf8Error { valid_up_to: 0, error_len: Some(1) } }', demo_canister/src/lib.rs:66:47
+[117. 2024-03-21T12:34:40.529936619Z]: Canister explicitly called trap: Panicked at 'called `Result::unwrap()` on an `Err` value: FromUtf8Error { bytes: [192, 255, 238], error: Utf8Error { valid_up_to: 0, error_len: Some(1) } }', demo/src/lib.rs:66:47
 [118. 2024-03-21T12:34:46.356277571Z]: right before memory out of bounds
 [119. 2024-03-21T12:34:46.356277571Z]: Canister trapped: stable memory out of bounds
 ```
@@ -72,9 +72,9 @@ dfx 0.18.0+rev28.dirty-b0405bac
 # Back to demo dir.
 $ cd ..
 
-# Checkout canister-logging demo repo.
-$ git clone git@github.com:maksymar/canister-logging.git
-$ cd canister-logging
+# Checkout canister-logs demo repo.
+$ git clone git@github.com:maksymar/canister-logs.git
+$ cd canister-logs
 # Alias new dfx.
 $ unalias dfx; alias dfx='./../sdk/target/debug/dfx'
 $ alias | grep dfx
@@ -86,5 +86,5 @@ dfx 0.18.0+rev28.dirty-b0405bac
 # Create new window: Ctrl+B+c
 # Split pane horisontally (one below another): Ctrl+B+"
 # Navigate between panes: Ctrl+B+(arrows)
-$ cd demo/canister-logging
+$ cd demo/canister-logs
 ```
