@@ -1,28 +1,26 @@
 # canister-logs
 
 ```shell
-# Window A.
+# Session A.
 $ unalias dfx; alias dfx='./../sdk/target/debug/dfx'
 $ dfx stop; dfx start --clean
 $ dfx stop
 
-# Pane B1.
+# Terminal 1.
 $ unalias dfx; alias dfx='./../sdk/target/debug/dfx'
 $ dfx deploy
 
-$ dfx canister call demo print aaa
-$ dfx canister call demo print bbb
+$ dfx canister call demo print hi!
 $ dfx canister call demo trap oops!
-$ dfx canister call demo trap ''
 $ dfx canister call demo panic aaa!
 $ dfx canister call demo failed_unwrap
 $ dfx canister call demo memory_oob
 
 $ dfx canister logs demo
 
-# Pane B2.
+# Terminal 2.
 $ unalias dfx; alias dfx='./../sdk/target/debug/dfx'
-$ ./stream_logs.sh
+$ ./poll_logs.sh
 ```
 
 Logs example
