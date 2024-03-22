@@ -1,8 +1,8 @@
 {
   "canisters": {
-    "logging_canister": {
-      "candid": "logging_canister/logging_canister.did",
-      "package": "logging_canister",
+    "demo_canister": {
+      "candid": "demo_canister/demo_canister.did",
+      "package": "demo_canister",
       "type": "rust"
     }
   },
