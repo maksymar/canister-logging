@@ -1,3 +1,5 @@
+use ic_cdk::{heartbeat, init, post_upgrade, update};
+
 fn setup() {
     // Set panic hook.
     std::panic::set_hook(Box::new(|info| {
@@ -22,36 +24,36 @@ fn setup() {
     setup_timer();
 }
 
-#[ic_cdk::init]
+#[init]
 fn init() {
     setup();
 }
 
-#[ic_cdk::post_upgrade]
+#[post_upgrade]
 fn post_upgrade() {
     setup();
 }
 
 //=============================================================================
 
-#[ic_cdk::update]
+#[update]
 fn print(text: String) {
     ic_cdk::print(text);
 }
 
-#[ic_cdk::update]
+#[update]
 fn trap(message: String) {
     ic_cdk::print("right before trap");
     ic_cdk::trap(&message);
 }
 
-#[ic_cdk::update]
+#[update]
 fn panic(message: String) {
     ic_cdk::print("right before panic");
     panic!("{}", message);
 }
 
-#[ic_cdk::update]
+#[update]
 fn memory_oob() {
     ic_cdk::print("right before memory out of bounds");
     const BUFFER_SIZE: u32 = 10;
@@ -59,7 +61,7 @@ fn memory_oob() {
     ic_cdk::api::stable::stable_read(BUFFER_SIZE + 1, &mut buffer);
 }
 
-#[ic_cdk::update]
+#[update]
 fn failed_unwrap() {
     ic_cdk::print("right before failed unwrap");
     String::from_utf8(vec![0xc0, 0xff, 0xee]).unwrap();
@@ -72,7 +74,7 @@ fn setup_timer() {
     });
 }
 
-#[ic_cdk::heartbeat]
+#[heartbeat]
 fn heartbeat() {
     // ic_cdk::print("right before heartbeat panic");
     // panic!("heartbeat panic");
