@@ -35,7 +35,7 @@ fn post_upgrade() {
     setup();
 }
 
-/* =============================================================================
+/*
 
 
 
@@ -52,12 +52,22 @@ fn post_upgrade() {
 
 
 
-============================================================================= */
+*/
 
 #[update]
 fn print(text: String) {
     ic_cdk::print(text); // Expect print message in the log.
 }
+
+/*
+
+
+
+
+
+
+
+*/
 
 #[update]
 fn trap(message: String) {
@@ -66,11 +76,29 @@ fn trap(message: String) {
     ic_cdk::trap(&message);
 }
 
+/*
+
+
+
+
+
+
+*/
+
 #[update]
 fn panic(message: String) {
     ic_cdk::print("right before panic");
     panic!("{}", message);
 }
+
+/*
+
+
+
+
+
+
+*/
 
 #[update]
 fn memory_oob() {
@@ -80,11 +108,29 @@ fn memory_oob() {
     ic_cdk::api::stable::stable_read(BUFFER_SIZE + 1, &mut buffer); // Reading memory outside of buffer should trap.
 }
 
+/*
+
+
+
+
+
+
+*/
+
 #[update]
 fn failed_unwrap() {
     ic_cdk::print("right before failed unwrap");
     String::from_utf8(vec![0xc0, 0xff, 0xee]).unwrap(); // Invalid utf8 should panic.
 }
+
+/*
+
+
+
+
+
+
+*/
 
 fn setup_timer() {
     ic_cdk_timers::set_timer_interval(Duration::from_secs(3), || {
