@@ -9,17 +9,21 @@ $ dfx stop
 # Terminal 1.
 $ unalias dfx; alias dfx='./../sdk/target/debug/dfx'
 $ dfx deploy
+$ clear
 
 $ dfx canister call demo print hi!
+$ dfx canister call demo print hello!
+$ dfx canister call demo print yey!
 $ dfx canister call demo trap oops!
 $ dfx canister call demo panic aaa!
-$ dfx canister call demo failed_unwrap
 $ dfx canister call demo memory_oob
-
-$ dfx canister logs demo
+$ dfx canister call demo failed_unwrap
 
 # Terminal 2.
 $ unalias dfx; alias dfx='./../sdk/target/debug/dfx'
+
+$ dfx canister logs demo
+
 $ ./poll_logs.sh
 ```
 
@@ -57,32 +61,41 @@ $ mkdir demo
 $ cd demo
 
 # [Before new DFX release]
+# Checkout IC repo.
+$ git clone git@gitlab.com:dfinity-lab/public/ic.git
+$ cd ic
+$ ./gitlab-ci/src/artifacts/newest_sha_with_disk_image.sh origin/master
+daef0d9103e0d114fe622c3d2f8be44875430a97  # Mar 27
+$ cd ..
 # Checkout SDK repo.
 $ git clone git@github.com:dfinity/sdk.git
 $ cd sdk
 # Update replica to log trap messages.
-$ SHA=bb0ac2e51992bb237a9900c379bf15b7a2b0b97d  # Mar 12
+#$ SHA=bb0ac2e51992bb237a9900c379bf15b7a2b0b97d  # Mar 12
+$ SHA=daef0d9103e0d114fe622c3d2f8be44875430a97  # Mar 27
 $ ./scripts/update-replica.sh $SHA
 # Build DFX with custom replica.
 $ cargo build --bin dfx
 $ ./target/debug/dfx -V
-dfx 0.18.0+rev28.dirty-b0405bac
-# Back to demo dir.
+#dfx 0.18.0+rev28.dirty-b0405bac       # Mar 12
+dfx 0.19.0-beta.0+rev0.dirty-c94c4390 # Mar 27
 $ cd ..
 
 # Checkout canister-logs demo repo.
-$ git clone git@github.com:maksymar/canister-logs.git
-$ cd canister-logs
+$ git clone git@github.com:maksymar/canister-logs.git logging
+$ cd logging
+$ git checkout dev
 # Alias new dfx.
 $ unalias dfx; alias dfx='./../sdk/target/debug/dfx'
 $ alias | grep dfx
 dfx=./../sdk/target/debug/dfx
 $ dfx -V
-dfx 0.18.0+rev28.dirty-b0405bac
+#dfx 0.18.0+rev28.dirty-b0405bac       # Mar 12
+dfx 0.19.0-beta.0+rev0.dirty-c94c4390 # Mar 27
 
 # Tmux shortcuts
 # Create new window: Ctrl+B+c
 # Split pane horisontally (one below another): Ctrl+B+"
 # Navigate between panes: Ctrl+B+(arrows)
-$ cd demo/canister-logs
+$ cd demo/logging
 ```
